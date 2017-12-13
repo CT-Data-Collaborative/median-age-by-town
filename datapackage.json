@@ -1,0 +1,212 @@
+{
+  "name": "median-age-by-town",
+  "datapackage_version": "1.0-beta.18",
+  "title": "Median Age by Town",
+  "description": "Median Age by Town reports the median age of a population for a given Town, Race/Ethnicity, Year, and Gender.",
+  "version": "1.0",
+  "licenses": [{
+    "url": "http://opendatacommons.org/licenses/pddl/",
+    "name": "Open Data Commons Public Domain",
+    "version": "1.0",
+    "id": "odc-pddl"
+  }],
+  "sources": [{
+    "name": "uscensus",
+    "web": ""
+  }],
+  "author":[{
+    "name": "Jenna Daly",
+    "email": "jdaly@ctdata.org",
+    "web": "http://ctdata.org"
+  }],
+  "contributor": [],
+  "resources": [{
+    "path": "data/median_age_town_2016.csv",
+    "format": "csv",
+    "schema": {
+      "fields": [{
+          "name": "Town",
+          "type": "string",
+          "dimension": false
+        }, {
+          "name": "FIPS",
+          "type": "string",
+          "dimension": false
+        }, {
+          "name": "Year",
+          "type": "string",
+          "dimension": false
+        }, {
+          "name": "Gender",
+          "type": "string",
+          "dimension": true,
+          "constraints": {
+            "enum": ["Total", "Female", "Male"]
+         }
+        }, {          
+          "name": "Race/Ethnicity",
+          "type": "string",
+          "dimension": true,
+          "constraints": {
+            "enum": ["All",
+                     "American Indian and Alaska Native Alone",   
+                     "Asian Alone",                                
+                     "Black or African American Alone",           
+                     "Hispanic or Latino",                         
+                     "Native Hawaiian and Other Pacific Islander",
+                     "Some Other Race Alone",                      
+                     "Two or More Races",                        
+                     "White Alone",                                
+                     "White Alone Not Hispanic or Latino"]
+         }
+        }, {           
+          "name": "Measure Type",
+          "type": "string",
+          "dimension": true,
+          "constraints": {
+            "enum": ["Number"]
+         }
+        }, {
+          "name": "Variable",
+          "type": "string",
+          "dimension": true,
+          "constraints": {
+            "enum": ["Median Age", "Margins of Error"]
+         }
+        }, {
+          "name": "Value",
+          "type": "number",
+          "dimension": false
+        }]
+      }
+    }
+  ],
+  "last_modified": "12/13/2017",
+  "ckan_extras": {
+    "full_description": {
+      "ckan_name": "Full Description",
+      "value": "Median Age by Town reports the median age of a population for a given Town, Race/Ethnicity, Year, and Gender. Beginning in 2000, individuals were presented with the option to select one or more races. In addition, the Census asked individuals to identify their race separately from identifying their Hispanic origin. The Census has published individual tables for the races and ethnicities provided as supplemental information to the main table that does not dissaggregate by race or ethnicity. Race categories include the following - White, Black or African American, American Indian or Alaska Native, Asian, Native Hawaiian or Other Pacific Islander, Some other race, and Two or more races. We are not including specific combinations of two or more races as the counts of these combinations are small. Ethnic categories include - Hispanic or Latino and White Non-Hispanic. This data originates from the American Community Survey 5-Year estimates, table B01002 and its Racial/Ethnic subtables, B01002A through B01002I.",
+      "type": "string"
+    },
+    "suppression": {
+      "ckan_name": "Suppression",
+      "value": "Suppressed estimates indicate that either no sample observations or too few sample observations were available to compute an estimate, or a ratio of medians cannot be calculated because one or both of the median estimates falls in the lowest interval or upper interval of an open-ended distribution. Suppressed Margins of Error indicate that the median falls in the lowest interval or upper interval of an open-ended distribution, therefore a statistical test is not appropriate.",
+      "type": "string"
+    },
+    "technical_notes": {
+      "ckan_name": "Technical Notes",
+      "value": "",
+      "type": "string"
+    },
+    "socrata": {
+      "ckan_name": "Socrata",
+      "value": "False",
+      "type": "string"
+    },
+    "socrata_url": {
+      "ckan_name": "Socrata Dataset URL",
+      "value": "",
+      "type": "string"
+    },
+    "socrata_dataset_name": {
+      "ckan_name": "Socrata Dataset Name",
+      "value": "",
+      "type": "string"
+    }, 
+    "domain": {
+      "ckan_name": "Domain",
+      "value": "Demographics",
+      "type": "string"
+    },
+    "subdomain": {
+      "ckan_name": "Subdomain",
+      "value": "Characteristics",
+      "type": "string"
+    },
+    "geography": {
+      "ckan_name": "Geography",
+      "value": "Town",
+      "type": "string",
+      "constraints": {"enum": ["Town", "County", "Town/County", "District", "Other"]}
+    },
+    "frequency": {
+      "ckan_name": "Frequency",
+      "value": "Annual",
+      "type": "string"
+    },
+    "years_in_catalog": {
+      "ckan_name": "Years in Catalog",
+      "value": ["2006-2010", "2007-2011", "2008-2012", "2009-2013", "2010-2014", "2011-2015", "2012-2016"],
+      "type": "array"
+    },
+    "latest_year": {
+      "ckan_name": "Latest Year Available",
+      "value": "2012-2016",
+      "type": "string"
+    },
+    "disabled_views": {
+      "ckan_name": "Disabled Views",
+      "value": [],
+      "type": "array",
+      "constraints": {"enum": ["map", "table", "bar", "line"]}
+    },
+    "units": {
+      "ckan_name": "Units",
+      "value": {
+        "Number": "",
+        "Percent": "%"
+      }
+    },
+    "expected_number_of_geographies": {
+      "ckan_name": "Expected Number of Unique Geographies",
+      "value": 170,
+      "type": "string"
+    },     
+    "default": {      
+      "ckan_name": "Default",
+      "value": {
+        "Town": "Connecticut",
+        "Year": ["2012-2016"],
+        "Race/Ethnicity": "All",     
+        "Measure Type": "Number", 
+        "Variable": "Median Age"
+      },
+      "type": "object"
+    } 
+  },
+  "spot_checks": [
+    {
+      "type": "$lookup",
+      "filter": {
+        "Town": "New Fairfield",
+        "Year":	"2011-2015",
+        "Gender": "Male",
+        "Race/Ethnicity": "White Alone Not Hispanic or Latino",
+        "Variable":	"Median Age",
+        "Measure Type":	"Number"
+      },
+      "expected": {
+        "type": "$match",
+        "number type": "float",
+        "value": 46.9
+      } 
+    }      
+  ],
+  "dimension_groups": [
+     {
+       "Gender": ["Total", "Female", "Male"],        
+       "Race/Ethnicity": ["All",
+                     "American Indian and Alaska Native Alone",   
+                     "Asian Alone",                                
+                     "Black or African American Alone",           
+                     "Hispanic or Latino",                         
+                     "Native Hawaiian and Other Pacific Islander",
+                     "Some Other Race Alone",                      
+                     "Two or More Races",                        
+                     "White Alone",                                
+                     "White Alone Not Hispanic or Latino"],
+       "Measure Type": ["Number"], 
+       "Variable": ["Median Age", "Margins of Error"]     
+     }
+  ]
+}
