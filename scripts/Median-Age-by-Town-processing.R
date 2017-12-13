@@ -178,6 +178,10 @@ for (i in seq_along(yearlist)) {
 
 med_age_data <- rbind(state_data, town_data)
 
+med_age_data$Value[med_age_data$Value == -666666666] <- NA
+med_age_data$Value[med_age_data$Value == "-222222222"] <- NA
+med_age_data$Value[med_age_data$Value == -333333333.0] <- NA
+
 #Merge in towns by FIPS
 town_fips_dp_URL <- 'https://raw.githubusercontent.com/CT-Data-Collaborative/ct-town-list/master/datapackage.json'
 town_fips_dp <- datapkg_read(path = town_fips_dp_URL)
