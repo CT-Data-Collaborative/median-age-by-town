@@ -15,13 +15,13 @@
     "web": ""
   }],
   "author":[{
-    "name": "Jenna Daly",
-    "email": "jdaly@ctdata.org",
+    "name": "Connecticut Data Collaborative",
+    "email": "info@ctdata.org",
     "web": "http://ctdata.org"
   }],
   "contributor": [],
   "resources": [{
-    "path": "data/median_age_town_2016.csv",
+    "path": "data/median_age_town_2017.csv",
     "format": "csv",
     "schema": {
       "fields": [{
@@ -43,23 +43,23 @@
           "constraints": {
             "enum": ["Total", "Female", "Male"]
          }
-        }, {          
+        }, {
           "name": "Race/Ethnicity",
           "type": "string",
           "dimension": true,
           "constraints": {
             "enum": ["All",
-                     "American Indian and Alaska Native Alone",   
-                     "Asian Alone",                                
-                     "Black or African American Alone",           
-                     "Hispanic or Latino",                         
+                     "American Indian and Alaska Native Alone",
+                     "Asian Alone",
+                     "Black or African American Alone",
+                     "Hispanic or Latino",
                      "Native Hawaiian and Other Pacific Islander",
-                     "Some Other Race Alone",                      
-                     "Two or More Races",                        
-                     "White Alone",                                
+                     "Some Other Race Alone",
+                     "Two or More Races",
+                     "White Alone",
                      "White Alone Not Hispanic or Latino"]
          }
-        }, {           
+        }, {
           "name": "Measure Type",
           "type": "string",
           "dimension": true,
@@ -81,7 +81,7 @@
       }
     }
   ],
-  "last_modified": "12/13/2017",
+  "last_modified": "01/15/2019",
   "ckan_extras": {
     "full_description": {
       "ckan_name": "Full Description",
@@ -112,7 +112,7 @@
       "ckan_name": "Socrata Dataset Name",
       "value": "",
       "type": "string"
-    }, 
+    },
     "domain": {
       "ckan_name": "Domain",
       "value": "Demographics",
@@ -136,12 +136,12 @@
     },
     "years_in_catalog": {
       "ckan_name": "Years in Catalog",
-      "value": ["2006-2010", "2007-2011", "2008-2012", "2009-2013", "2010-2014", "2011-2015", "2012-2016"],
+      "value": ["2006-2010", "2007-2011", "2008-2012", "2009-2013", "2010-2014", "2011-2015", "2012-2016", "2013-2017"],
       "type": "array"
     },
     "latest_year": {
       "ckan_name": "Latest Year Available",
-      "value": "2012-2016",
+      "value": "2013-2017",
       "type": "string"
     },
     "disabled_views": {
@@ -161,18 +161,18 @@
       "ckan_name": "Expected Number of Unique Geographies",
       "value": 170,
       "type": "string"
-    },     
-    "default": {      
+    },
+    "default": {
       "ckan_name": "Default",
       "value": {
         "Town": "Connecticut",
-        "Year": ["2012-2016"],
-        "Race/Ethnicity": "All",     
-        "Measure Type": "Number", 
+        "Year": ["2013-2017"],
+        "Race/Ethnicity": "All",
+        "Measure Type": "Number",
         "Variable": "Median Age"
       },
       "type": "object"
-    } 
+    }
   },
   "spot_checks": [
     {
@@ -189,24 +189,24 @@
         "type": "$match",
         "number type": "float",
         "value": 46.9
-      } 
-    }      
+      }
+    }
   ],
   "dimension_groups": [
      {
-       "Gender": ["Total", "Female", "Male"],        
+       "Gender": ["Total", "Female", "Male"],
        "Race/Ethnicity": ["All",
-                     "American Indian and Alaska Native Alone",   
-                     "Asian Alone",                                
-                     "Black or African American Alone",           
-                     "Hispanic or Latino",                         
+                     "American Indian and Alaska Native Alone",
+                     "Asian Alone",
+                     "Black or African American Alone",
+                     "Hispanic or Latino",
                      "Native Hawaiian and Other Pacific Islander",
-                     "Some Other Race Alone",                      
-                     "Two or More Races",                        
-                     "White Alone",                                
+                     "Some Other Race Alone",
+                     "Two or More Races",
+                     "White Alone",
                      "White Alone Not Hispanic or Latino"],
-       "Measure Type": ["Number"], 
-       "Variable": ["Median Age", "Margins of Error"]     
+       "Measure Type": ["Number"],
+       "Variable": ["Median Age", "Margins of Error"]
      }
   ]
 }
