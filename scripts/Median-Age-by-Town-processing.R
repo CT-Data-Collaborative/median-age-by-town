@@ -1,6 +1,6 @@
 # Setting wd to current directory (Windows)
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-source('acsHelpers.R')
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+# source('acsHelpers.R')
 
 library(dplyr)
 library(acs)
@@ -8,7 +8,7 @@ library(devtools)
 library(datapkg)
 library(tidyr)
 # Linux
-# source('./scripts/acsHelpers.R')
+source('./scripts/acsHelpers.R')
 
 
 
@@ -205,21 +205,21 @@ med_age_data <- med_age_data %>%
   arrange(Town, Year, Gender, `Race/Ethnicity`, `Measure Type`, desc(Variable))
 
 # Linux
-# write.table (
-#   med_age_data,
-#   file.path(getwd(), "data", "median_age_town_2019.csv"),
-#   sep = ",",
-#   row.names = F,
-#   na = "-9999"
-# )
-
-# Windows
 write.table (
   med_age_data,
-  file.path("C:/Users/Jason/Documents/GitHub/median-age-by-town/data/median_age_town_2019.csv"),
+  file.path(getwd(), "data", "median_age_town_2019.csv"),
   sep = ",",
   row.names = F,
   na = "-9999"
 )
+
+# Windows
+# write.table (
+#   med_age_data,
+#   file.path("C:/Users/Jason/Documents/GitHub/median-age-by-town/data/median_age_town_2019.csv"),
+#   sep = ",",
+#   row.names = F,
+#   na = "-9999"
+# )
 
 
