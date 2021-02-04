@@ -1,10 +1,16 @@
+# Setting wd to current directory (Windows)
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+source('acsHelpers.R')
+
 library(dplyr)
 library(acs)
 library(devtools)
-load_all('../datapkg')
 library(datapkg)
 library(tidyr)
-source('./scripts/acsHelpers.R')
+# Linux
+# source('./scripts/acsHelpers.R')
+
+
 
 ##################################################################
 #
@@ -16,7 +22,7 @@ source('./scripts/acsHelpers.R')
 
 #Get state data
 geography=geo.make(state=09)
-yearlist=c(2010:2018)
+yearlist=c(2010:2019)
 span = 5
 col.names="pretty" 
 key="ed0e58d2538fb239f51e01643745e83f380582d7"
@@ -184,10 +190,13 @@ med_age_data$Value[med_age_data$Value == -666666666] <- NA
 med_age_data$Value[med_age_data$Value == "-222222222"] <- NA
 med_age_data$Value[med_age_data$Value == -333333333.0] <- NA
 
-#Merge in towns by FIPS
-town_fips_dp_URL <- 'https://raw.githubusercontent.com/CT-Data-Collaborative/ct-town-list/master/datapackage.json'
-town_fips_dp <- datapkg_read(path = town_fips_dp_URL)
-towns <- (town_fips_dp$data[[1]])
+#Merge in towns by FIPS (Linux)
+#town_fips_dp_URL <- 'http://raw.githubusercontent.com/CT-Data-Collaborative/ct-town-list/master/datapackage.json'
+#town_fips_dp <- datapkg_read(path = town_fips_dp_URL)
+#towns <- (town_fips_dp$data[[1]])
+
+# Grab towns and FIPS (Windows)
+towns <- read.csv("C:/Users/Jason/Documents/GitHub/town_fips.csv", colClasses = "character")
 
 med_age_data <- merge(med_age_data, towns, by = "FIPS")
 
@@ -195,13 +204,22 @@ med_age_data <- med_age_data %>%
   select(Town, FIPS, Year, Gender, `Race/Ethnicity`, `Measure Type`, Variable, Value) %>% 
   arrange(Town, Year, Gender, `Race/Ethnicity`, `Measure Type`, desc(Variable))
 
+# Linux
+# write.table (
+#   med_age_data,
+#   file.path(getwd(), "data", "median_age_town_2019.csv"),
+#   sep = ",",
+#   row.names = F,
+#   na = "-9999"
+# )
+
+# Windows
 write.table (
   med_age_data,
-  file.path(getwd(), "data", "median_age_town_2018.csv"),
+  file.path("C:/Users/Jason/Documents/GitHub/median-age-by-town/data/median_age_town_2019.csv"),
   sep = ",",
   row.names = F,
   na = "-9999"
 )
-
 
 
