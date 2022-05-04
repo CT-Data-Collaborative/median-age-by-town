@@ -22,7 +22,7 @@ source('./scripts/acsHelpers.R')
 
 #Get state data
 geography=geo.make(state=09)
-yearlist=c(2010:2019)
+yearlist=c(2010:2020)
 span = 5
 col.names="pretty" 
 key="ed0e58d2538fb239f51e01643745e83f380582d7"
@@ -43,9 +43,9 @@ for (i in seq_along(yearlist)) {
     #needed to grab all columns for all years    
     variable =list()      
     for (k in seq_along(1:3)) {
-     number = number=paste0("B01002", tbl, "_", sprintf("%03d",k))
-     variable = c(variable, number)
-     k=k+1
+      number = number=paste0("B01002", tbl, "_", sprintf("%03d",k))
+      variable = c(variable, number)
+      k=k+1
     }    
     variable <- as.character(variable)    
     data <- acs.fetch(geography=geography, endyear=endyear, span=span, 
@@ -59,46 +59,46 @@ for (i in seq_along(yearlist)) {
     total.m <- acsSum(data, 2, "Median Age Male")
     total.f <- acsSum(data, 3, "Median Age Female")
     estimates <- data.table(
-            geo, 
-            estimate(total),
-            estimate(total.m),
-            estimate(total.f),
-            year,
-            race, 
-            "Measure Type" = "Number", 
-            "Variable" = "Median Age"
-        )
+      geo, 
+      estimate(total),
+      estimate(total.m),
+      estimate(total.f),
+      year,
+      race, 
+      "Measure Type" = "Number", 
+      "Variable" = "Median Age"
+    )
     moes <- data.table(
-            geo,
-            standard.error(total) * 1.645,
-            standard.error(total.m) * 1.645,
-            standard.error(total.f) * 1.645,
-            year,
-            race, 
-            "Measure Type" = "Number", 
-            "Variable" = "Margins of Error"
-        )
+      geo,
+      standard.error(total) * 1.645,
+      standard.error(total.m) * 1.645,
+      standard.error(total.f) * 1.645,
+      year,
+      race, 
+      "Measure Type" = "Number", 
+      "Variable" = "Margins of Error"
+    )
     numberNames <- c(
-            "FIPS",
-            "Total",
-            "Male",
-            "Female",
-            "Year",
-            "Race/Ethnicity", 
-            "Measure Type", 
-            "Variable"
-         )
+      "FIPS",
+      "Total",
+      "Male",
+      "Female",
+      "Year",
+      "Race/Ethnicity", 
+      "Measure Type", 
+      "Variable"
+    )
     setnames(estimates, numberNames)
     setnames(moes, numberNames)
     data.melt <- melt(
-            rbind(estimates, moes),
-            id.vars=c("FIPS", "Year", "Measure Type", "Variable", "Race/Ethnicity"),
-            variable.name="Gender",
-            variable.factor = F,
-            value.name="Value",
-            value.factor = F
-         )
-     inter_data <- rbind(inter_data, data.melt)
+      rbind(estimates, moes),
+      id.vars=c("FIPS", "Year", "Measure Type", "Variable", "Race/Ethnicity"),
+      variable.name="Gender",
+      variable.factor = F,
+      value.name="Value",
+      value.factor = F
+    )
+    inter_data <- rbind(inter_data, data.melt)
   }
   state_data <- rbind(state_data, inter_data)
 }
@@ -116,9 +116,9 @@ for (i in seq_along(yearlist)) {
     #needed to grab all columns for all years    
     variable =list()      
     for (k in seq_along(1:3)) {
-     number = number=paste0("B01002", tbl, "_", sprintf("%03d",k))
-     variable = c(variable, number)
-     k=k+1
+      number = number=paste0("B01002", tbl, "_", sprintf("%03d",k))
+      variable = c(variable, number)
+      k=k+1
     }    
     variable <- as.character(variable)    
     data <- acs.fetch(geography=geography, endyear=endyear, span=span, 
@@ -138,48 +138,48 @@ for (i in seq_along(yearlist)) {
     total.m <- acsSum(data, 2, "Median Age Male")
     total.f <- acsSum(data, 3, "Median Age Female")
     estimates <- data.table(
-            geo, 
-            estimate(total),
-            estimate(total.m),
-            estimate(total.f),
-            year,
-            race,
-            "Measure Type" = "Number", 
-            "Variable" = "Median Age"
-            
-        )
+      geo, 
+      estimate(total),
+      estimate(total.m),
+      estimate(total.f),
+      year,
+      race,
+      "Measure Type" = "Number", 
+      "Variable" = "Median Age"
+      
+    )
     moes <- data.table(
-            geo,
-            standard.error(total) * 1.645,
-            standard.error(total.m) * 1.645,
-            standard.error(total.f) * 1.645,
-            year,
-            race, 
-            "Measure Type" = "Number", 
-            "Variable" = "Margins of Error"
-            
-        )
+      geo,
+      standard.error(total) * 1.645,
+      standard.error(total.m) * 1.645,
+      standard.error(total.f) * 1.645,
+      year,
+      race, 
+      "Measure Type" = "Number", 
+      "Variable" = "Margins of Error"
+      
+    )
     numberNames <- c(
-            "FIPS",
-            "Total",
-            "Male",
-            "Female",
-            "Year",
-            "Race/Ethnicity", 
-            "Measure Type", 
-            "Variable"            
-         )
+      "FIPS",
+      "Total",
+      "Male",
+      "Female",
+      "Year",
+      "Race/Ethnicity", 
+      "Measure Type", 
+      "Variable"            
+    )
     setnames(estimates, numberNames)
     setnames(moes, numberNames)
     data.melt <- melt(
-            rbind(estimates, moes),
-            id.vars=c("FIPS", "Year", "Measure Type", "Variable", "Race/Ethnicity"),
-            variable.name="Gender",
-            variable.factor = F,
-            value.name="Value",
-            value.factor = F
-         )
-     inter_data <- rbind(inter_data, data.melt)
+      rbind(estimates, moes),
+      id.vars=c("FIPS", "Year", "Measure Type", "Variable", "Race/Ethnicity"),
+      variable.name="Gender",
+      variable.factor = F,
+      value.name="Value",
+      value.factor = F
+    )
+    inter_data <- rbind(inter_data, data.melt)
   }
   town_data <- rbind(town_data, inter_data)
 }
@@ -207,16 +207,15 @@ med_age_data <- med_age_data %>%
 # Linux
 write.table (
   med_age_data,
-  file.path(getwd(), "data", "median_age_town_2019.csv"),
+  file.path(getwd(), "data", "median_age_town_2020.csv"),
   sep = ",",
   row.names = F,
   na = "-9999"
 )
-
 # Windows
 # write.table (
 #   med_age_data,
-#   file.path("C:/Users/Jason/Documents/GitHub/median-age-by-town/data/median_age_town_2019.csv"),
+#   file.path("C:/Users/Jason/Documents/GitHub/median-age-by-town/data/median_age_town_2019_test.csv"),
 #   sep = ",",
 #   row.names = F,
 #   na = "-9999"
